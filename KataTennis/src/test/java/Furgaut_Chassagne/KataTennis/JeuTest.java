@@ -9,76 +9,99 @@ public class JeuTest extends TestCase {
 	
 	public void testNouveauJeuDoitRetournerZeroPartout()
 	{
-		String score = jeu.getScore();		
-		assertEquals("Zero partout", score);
+		String score = jeu.getScore();	
+		
+		assertEquals("0 partout", score);
 	}
 	
 	public void testJoueur1GagnePremiereBalle()
 	{
 		jeu.joueur1Marque();
+		
 		String score = jeu.getScore();
-		assertEquals("Quinze,Zero", score);		
+		
+		assertEquals("15 - 0", score);
 	}
 	
 	public void testQuinzePartout(){
 		jeu.joueur1Marque();
 		jeu.joueur2Marque();		
+		
 		String score = jeu.getScore();
-		assertEquals("Quinze partout", score);
+		
+		assertEquals("15 partout", score);
 	}
 	
 	public void testJoueur2GagnePremiereBalle() {
 		creerScore(0, 2);		
+		
 		String score = jeu.getScore();
-		assertEquals("Zero,Trente", score);
+		
+		assertEquals("0 - 30", score);
 	}	
 	
 	public void testJoueur1Gagne3PremieresBalles(){
 		creerScore(3, 0);
+		
 		String score = jeu.getScore();
-		assertEquals("Quarante,Zero", score);
+		
+		assertEquals("40 - 0", score);
 	}
 	
 	public void testJoueursEgalite() {
 		creerScore(3, 3);		
+		
 		String score = jeu.getScore();
-		assertEquals("Egalité", score);		
+		
+		assertEquals("Égalité", score);		
 	}
 	
 	public void testJoueur1GagneLeJeu()
 	{
-		creerScore(4, 0);		
+		creerScore(4, 0);	
+		
 		String score = jeu.getScore();
+		
 		assertEquals("Nadal a gagné", score);
 	}
 	
 	public void testJoueur2GagneLeJeu(){
 		creerScore(0,4);		
+		
 		String score = jeu.getScore();
+		
 		assertEquals("Noah a gagné", score);
 	}
 	
 	public void testJoueursEgalite40A() {
 		creerScore(4, 4);
+		
 		String score = jeu.getScore();
-		assertEquals("Egalité", score);		
+		
+		assertEquals("Égalité", score);		
 	}
 
 	public void testJoueur2Avantage(){
 		creerScore(4, 5);		
+		
 		String score = jeu.getScore();
+		
 		assertEquals("Avantage Noah", score);
 	}
 	
 	public void testJoueur2GagneApresAvantage() {
-		creerScore(6, 8);
+		creerScore(10, 12);
+		
 		String score = jeu.getScore();
+		
 		assertEquals("Noah a gagné", score);
 	}
 	
 	public void testJoueur1GagneApresAvantage() {
-		creerScore(8, 6);
+		creerScore(9, 7);
+		
 		String score = jeu.getScore();
+		
 		assertEquals("Nadal a gagné", score);
 	}
 	

@@ -7,10 +7,10 @@ public class Jeu
 	private int scoreJoueur1;
 	private int scoreJoueur2;
 
-	public Jeu(Joueur _joueur1, Joueur _joueur2)
+	public Jeu(Joueur joueur1, Joueur joueur2)
 	{
-		joueur1 = _joueur1;
-		joueur2 = _joueur2;
+		this.joueur1 = joueur1;
+		this.joueur2 = joueur2;
 	}
 	
 	public Joueur getJoueur1()
@@ -21,40 +21,40 @@ public class Jeu
 	{
 		return joueur2;
 	}
-	public void setJoueur1(Joueur _joueur1)
+	public void setJoueur1(Joueur joueur1)
 	{
-		joueur1 = _joueur1;
+		this.joueur1 = joueur1;
 	}
-	public void setJoueur2(Joueur _joueur2)
+	public void setJoueur2(Joueur joueur2)
 	{
-		joueur2 = _joueur2;
+		this.joueur2 = joueur2;
 	}
 	
 	public String getScore() {
 		
 		if (jeuTermine()) {
-			return playerWithHighestScore() + " a gagné";
+			return ScoreAvecLePlusGrosScore() + " a gagné";
 		}
 		
 		if (Avantage()) { 
-			return "Avantage " + playerWithHighestScore(); 
+			return "Avantage " + ScoreAvecLePlusGrosScore(); 
 		}
 		
-		if (isDeuce())
-			return "Egalité";
+		if (Egalité())
+			return "Égalité";
 		
 		if(scoreJoueur1 == scoreJoueur2) {
 			return conversionScore(scoreJoueur1) + " partout";
 		}
 		
-		return conversionScore(scoreJoueur1) + "," + conversionScore(scoreJoueur2);
+		return conversionScore(scoreJoueur1) + " - " + conversionScore(scoreJoueur2);
 	}
 
-	private boolean isDeuce() {
+	private boolean Egalité() {
 		return scoreJoueur1 >= 3 && scoreJoueur2 == scoreJoueur1;
 	}
 	
-	private String playerWithHighestScore() {
+	private String ScoreAvecLePlusGrosScore() {
 		if (scoreJoueur1 > scoreJoueur2) {
 			return joueur1.getNom();
 		} else {
@@ -71,11 +71,12 @@ public class Jeu
 	}
 	
 	private boolean Avantage() {
-		if (scoreJoueur2 >= 4 && scoreJoueur2 == scoreJoueur1 + 1)
+		if (scoreJoueur2 >= 4 && scoreJoueur2 == scoreJoueur1 + 1){
 			return true;
-		if (scoreJoueur1 >= 4 && scoreJoueur1 == scoreJoueur2 + 1)
+		}
+		if (scoreJoueur1 >= 4 && scoreJoueur1 == scoreJoueur2 + 1){
 			return true;
-		
+		}
 		return false;
 
 	}
@@ -88,17 +89,17 @@ public class Jeu
 		scoreJoueur2++;
 	}
 	
-	private String conversionScore(int score) {
+	private int conversionScore(int score) {
 		switch (score) {
-		case 3:
-			return "Quarante";
-		case 2:
-		return "Trente";
-		case 1: 
-			return "Quinze";
 		case 0:
-			return "Zero";
+			return 0;
+		case 1:
+		return 15;
+		case 2: 
+			return 30;
+		case 3:
+			return 40;
 		}
-	throw new IllegalArgumentException("score illegal: " + score);
+	throw new IllegalArgumentException("score illégal: " + score);
 }
 }
