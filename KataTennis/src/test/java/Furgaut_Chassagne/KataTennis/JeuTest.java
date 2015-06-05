@@ -9,6 +9,7 @@ public class JeuTest extends TestCase {
 	
 	public void testNouveauJeuDoitRetournerZeroPartout()
 	{
+		creerScore(0, 0);	
 		String score = jeu.getScore();	
 		
 		assertEquals("0 partout", score);
@@ -16,7 +17,7 @@ public class JeuTest extends TestCase {
 	
 	public void testJoueur1GagnePremiereBalle()
 	{
-		jeu.joueur1Marque();
+		creerScore(1, 0);	
 		
 		String score = jeu.getScore();
 		
@@ -24,8 +25,7 @@ public class JeuTest extends TestCase {
 	}
 	
 	public void testQuinzePartout(){
-		jeu.joueur1Marque();
-		jeu.joueur2Marque();		
+		creerScore(1, 1);		
 		
 		String score = jeu.getScore();
 		
